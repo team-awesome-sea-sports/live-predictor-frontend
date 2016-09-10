@@ -1,12 +1,14 @@
 'use strict';
 
-// var configN = require(__dirname + '/sqs.config.js');
+var config = require(__dirname + '/config.js');
+
+console.log(config.keyName);
 
 var Poller = require('aws-sqs-poller'),
   options = {
     name: 'gamestream-dev-situation',
-    accessKeyId: 'AKIAJKJB3EFCZL6LJQ3A',
-    secretAccessKey: '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',
+    accessKeyId: config.keyName,
+    secretAccessKey: config.secret,
     region          : 'us-west-2'
 
   };
