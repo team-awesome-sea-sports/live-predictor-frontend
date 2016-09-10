@@ -2,7 +2,6 @@
 
 var config = require(__dirname + '/config.js');
 
-console.log(config.keyName);
 
 var Poller = require('aws-sqs-poller'),
   options = {
