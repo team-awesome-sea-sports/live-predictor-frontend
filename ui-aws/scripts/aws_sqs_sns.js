@@ -21,9 +21,8 @@ function subscribe_queue_to_topic(sns_conn, sqs_conn, topic_arn, app_name, callb
     var queue_url = "";
     var queue_arn = "";
 
-    // create new SQS queue
     sqs_conn.createQueue({
-        QueueName: queue_name
+        QueueName: queue_name,
     }, function (err, data) {
         if (err !== null) {
             window.alert(err);
@@ -55,8 +54,39 @@ function subscribe_queue_to_topic(sns_conn, sqs_conn, topic_arn, app_name, callb
                         window.alert(err);
                     }
 
-                    alert("Game room now connected to " + app_name + " updates...");
-                    callback_function(sqs_conn, sqs_arn, ui_callback_function);
+                    var sqs_policy = {
+                        "Version":"2012-10-17",
+                        "Id": queue_arn + "/SQSDefaultPolicy",
+                        "Statement": [{
+                            "Sid": "Sid" + new Date().getTime(),
+                            "Effect": "Allow",
+                            "Principal": {
+                                "AWS": "*"
+                            },
+                            "Action":"SQS:SendMessage",
+                            "Resource":queue_arn,
+                            "Condition":{
+                                "ArnEquals":{
+                                    "aws:SourceArn":topic_arn
+                                }
+                            }
+                        }]
+                    }
+                    var sqs_policy_json = JSON.stringify(sqs_policy);
+
+                    alert("Setting queue attributes for policy..."); 
+                    sqs_conn.setQueueAttributes({
+                        QueueUrl: queue_url, 
+                        Attributes: {
+                            Policy: sqs_policy_json
+                        }
+                    }, function (err, data) {
+                        if (err !== null) {
+                            window.alert(err);
+                        }
+                        alert("Game room now connected to " + app_name + " updates...");
+                        callback_function(sqs_conn, sqs_arn, ui_callback_function);
+                    });
                 });
             }
         });
