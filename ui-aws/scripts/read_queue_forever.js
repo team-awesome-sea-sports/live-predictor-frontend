@@ -14,22 +14,20 @@ function read_one_message_from_queue(sqs_conn, queue_url, ui_callback_function){
                 //sqs msg body
                 sqs_message_body = JSON.parse(data.Messages[0].Body);
         
-                //do something...
-                ui_callback_function(sqs_message_body);
-
                 //if it works, delete message from queue
                 sqs_conn.deleteMessage({
                     "QueueUrl" : queue_url,
                     "ReceiptHandle" :data.Messages[0].ReceiptHandle
                 });
-            } else { 
-                alert("data: " + data + "data.Messages " + data.Messages);
-            }
-        } else {
-            setTimeout(function(){
-                read_one_message_from_queue(sqs_conn, queue_url, ui_callback_function)
-            }, 5000);
-        }
+
+                //do something...
+                ui_callback_function(sqs_message_body);
+
+            } 
+        } 
+        setTimeout(function(){
+            read_one_message_from_queue(sqs_conn, queue_url, ui_callback_function)
+        }, 5000);
     });
 }
 
