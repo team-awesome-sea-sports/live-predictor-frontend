@@ -8,9 +8,10 @@
     <script type="text/javascript" src="scripts/aws_sqs_sns.js"></script>
     <script type="text/javascript" src="scripts/read_queue_forever.js"></script>
     <script type="text/javascript" src="scripts/ui-callbacks.js"></script>
+    <script type="text/javascript" src="scripts/ws_credentials.js"></script>
     <script type="text/javascript">
         // configure AWS
-        AWS.config.update({accessKeyId: 'AKIAJ6X7NWR2Y75OPX3A', secretAccessKey: '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'});
+        AWS.config.update(get_aws_credentials());
         AWS.config.region = 'us-west-2';
 
         var sns_conn = new AWS.SNS();

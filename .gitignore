@@ -4,3 +4,4 @@ build/
 rin/
 rin2/
 config.js
+ui-aws/scripts/aws_credentials.js
