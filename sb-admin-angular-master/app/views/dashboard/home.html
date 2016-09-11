@@ -1,4 +1,4 @@
-<div data-ng-init="MainCtrl.getSchedule()">
+<div data-ng-controller="MainCtrl as mainCtrl">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Dashboard</h1>
@@ -7,20 +7,33 @@
     </div>
     <!-- /.row -->
     <div class="row">
+<section class="box-container">
 
-        <games team1="Buccaneers" team2="Falcons" kickoff-time="1:00 PM ET" colour="primary" type="comments"></games>
-        <games team1="Browns" team2="Eagles" kickoff-time="1:00 PM ET" colour="primary" type="user"></games>
+  <div class="box-watch" data-ng-repeat="sched in mainCtrl.schedules | filter: 'inprogress'" >
+    <h3>{{sched.home}} - {{sched.away}}</h3>
+    <h5 class="status-class">Status: {{sched.status}}</h5>
+
+    <!-- <h5><strong>Start time:</strong> {{sched.scheduled | date: MM/dd:HH:mm}}</h5> -->
+
+
+  <input ng-click="show = !show" type="button" name="name" value="Make Live Predictions"> </input>
+
+
+  </div>
+</section>
+        <!-- <games data-ng-repeat="sched in mainCtrl.schedules"team1={{sched.games[1]}} team2="{{sched.games.home}}" kickoff-time="1:00 PM ET" colour="primary" type="comments">  {{mainCtrl.schedules}}</games> -->
+        <!-- <games team1="Browns" team2="Eagles" kickoff-time="1:00 PM ET" colour="primary" type="user"></games>
         <games team1="Bengals" team2="Jets" kickoff-time="1:00 PM ET"  colour="yellow" type="shopping-cart"></games>
-        <games team1="Raiders" team2="Saints" kickoff-time="1:00 PM ET"  colour="red" type="support"></games>
+        <games team1="Raiders" team2="Saints" kickoff-time="1:00 PM ET"  colour="red" type="support"></games> -->
 
     </div>
 
     <!-- /.panel -->
     <div class="row">
         <div class="col-lg-8">
-            <div class="panel panel-default">
+            <div class="panel panel-default" ng-show="show">
                 <div class="panel-heading">
-                    <i class="fa fa-clock-o fa-fw"></i> Game Room
+                    Game Room
                 </div>
                 <!-- /.panel-heading -->
                 <timeline></timeline>
