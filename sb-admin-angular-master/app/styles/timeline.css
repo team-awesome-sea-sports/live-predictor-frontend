@@ -1,11 +1,16 @@
 .timeline {
     position: relative;
+    /*background-image: url(../football.png);*/
     padding: 20px 0 20px;
     list-style: none;
+    overflow: hidden;
+height: 100em;
 }
 
+
+
 .timeline:before {
-    content: " ";
+    /*content: " ";*/
     position: absolute;
     top: 0;
     bottom: 0;
@@ -15,7 +20,26 @@
     background-color: #eeeeee;
 }
 
-.timeline > li {
+.field-img {
+  /*background-image: url(../football.png);
+  background-repeat: no-repeat;
+  background-size: contain;*/
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    z-index: -9999;
+}
+
+/*.field-img > img {
+      z-index: -999;
+}*/
+
+/*.btn-group {
+  z-index: 99;
+}*/
+/*.timeline > li {
     position: relative;
     margin-bottom: 20px;
 }
@@ -24,7 +48,7 @@
 .timeline > li:after {
     content: " ";
     display: table;
-}
+}*/
 
 .timeline > li:after {
     clear: both;
