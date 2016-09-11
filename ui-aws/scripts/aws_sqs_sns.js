@@ -1,6 +1,3 @@
-function do_nothing(){
-}
-
 function guid() {
     function s4() {
         return Math.floor((1 + Math.random()) * 0x10000)
@@ -15,6 +12,22 @@ function generate_queue_name(app_name) {
     return "gamestream-dev-" + app_name + "-" + guid();
 }
 
+function send_selections_to_queue(sqs_conn, selections){
+    var queue_name = "player-choices";
+    var queue_url = "https://sqs.us-west-2.amazonaws.com/785203616251/player-choices";
+
+    var send_params = {
+        MessageBody: JSON.stringify(selections),
+        QueueUrl: queue_url,
+        DelaySeconds: 0,
+    };
+    sqs_conn.sendMessage(send_params, function(err, data) {
+        if (err){
+            // retry...this might be a bad idea without a max retries :/
+            send_selections_to_queue(sqs_conn, selections);
+        }
+    });
+}
 
 function subscribe_queue_to_topic(sns_conn, sqs_conn, topic_arn, app_name, callback_function, ui_callback_function) {
     var queue_name = generate_queue_name(app_name);

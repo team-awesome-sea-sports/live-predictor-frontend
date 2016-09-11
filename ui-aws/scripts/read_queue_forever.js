@@ -1,6 +1,4 @@
 /* Data Examples
-
-Situation Data: {"situationID":"1234","gameID":"1234","playerID":"1234","choice":{"action":"pass","position":"right","distance":"short"}}
 Score Data: {
     "gameID":"1234",
     "situationID": "1234",
