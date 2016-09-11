@@ -18,10 +18,10 @@ function read_one_message_from_queue(sqs_conn, queue_url, ui_callback_function){
                 sqs_conn.deleteMessage({
                     "QueueUrl" : queue_url,
                     "ReceiptHandle" :data.Messages[0].ReceiptHandle
+                }, function(err, data){
+                    //do something...
+                    if(err === null) ui_callback_function(sqs_message_body);
                 });
-
-                //do something...
-                ui_callback_function(sqs_message_body);
 
             } 
         } 
