@@ -31,7 +31,25 @@ height: 100em;
     transform: rotate(90deg);
     z-index: -9999;
 }
+.box-container {
+  display: flex;
+/* flex-direction: column; */
+flex-wrap: wrap;
+height: 100%;
+}
 
+.box-watch {
+  padding: 1em;
+height: 10em;
+width: 15em;
+background-color: aqua;
+margin-left: 1em;
+margin-bottom: 1em;
+text-align: center;
+}
+.status-class {
+  color: black;
+}
 /*.field-img > img {
       z-index: -999;
 }*/

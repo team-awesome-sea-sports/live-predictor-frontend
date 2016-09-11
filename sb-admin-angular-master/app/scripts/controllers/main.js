@@ -14,7 +14,7 @@ angular.module('sbAdminApp')
     var vm = this;
     const schedRoute = 'https://api.sportradar.us/nfl-t1/2016/reg/1/schedule.json?api_key=f88crygtpcxcnc5gu93sqw3m';
     vm.schedules = ['bleh'];
-
+    vm.liveScores = ['whut'];
       $http({
         method: 'GET',
         url: 'https://api.sportradar.us/nfl-t1/2016/reg/1/schedule.json?api_key=f88crygtpcxcnc5gu93sqw3m'
@@ -30,13 +30,31 @@ angular.module('sbAdminApp')
       // })
       .then((res) => {
         console.log('res',res);
-        vm.schedules = res.data;
+        vm.schedules = res.data.games;
         console.log('data is ',vm.schedules);
       },
       function(error) {
         console.error(error);
       }
     );
+
+    $http({
+      method: 'GET',
+      url: 'https://api.sportradar.us/nfl-t1/2016/reg/1/schedule.json?api_key=f88crygtpcxcnc5gu93sqw3m'
+
+
+    })
+
+    .then((res) => {
+      console.log('res',res);
+      vm.liveScores = res.data.games;
+      console.log('data is ',vm.liveScores);
+    },
+    function(error) {
+      console.error(error);
+    }
+  );
+
 
 };
 

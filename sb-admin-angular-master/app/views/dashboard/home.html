@@ -7,8 +7,21 @@
     </div>
     <!-- /.row -->
     <div class="row">
+<section class="box-container">
 
-        <games data-ng-repeat="sched in mainCtrl.schedules"team1="{{sched.away}}" team2="{{sched.home}}" kickoff-time="1:00 PM ET" colour="primary" type="comments">  {{mainCtrl.schedules}}</games>
+  <div class="box-watch" data-ng-repeat="sched in mainCtrl.schedules | filter: 'inprogress'" >
+    <h3>{{sched.home}} - {{sched.away}}</h3>
+    <h5 class="status-class">Status: {{sched.status}}</h5>
+
+    <!-- <h5><strong>Start time:</strong> {{sched.scheduled | date: MM/dd:HH:mm}}</h5> -->
+
+
+  <input ng-click="show = !show" type="button" name="name" value="Make Live Predictions"> </input>
+
+
+  </div>
+</section>
+        <!-- <games data-ng-repeat="sched in mainCtrl.schedules"team1={{sched.games[1]}} team2="{{sched.games.home}}" kickoff-time="1:00 PM ET" colour="primary" type="comments">  {{mainCtrl.schedules}}</games> -->
         <!-- <games team1="Browns" team2="Eagles" kickoff-time="1:00 PM ET" colour="primary" type="user"></games>
         <games team1="Bengals" team2="Jets" kickoff-time="1:00 PM ET"  colour="yellow" type="shopping-cart"></games>
         <games team1="Raiders" team2="Saints" kickoff-time="1:00 PM ET"  colour="red" type="support"></games> -->
@@ -18,7 +31,7 @@
     <!-- /.panel -->
     <div class="row">
         <div class="col-lg-8">
-            <div class="panel panel-default">
+            <div class="panel panel-default" ng-show="show">
                 <div class="panel-heading">
                     Game Room
                 </div>
