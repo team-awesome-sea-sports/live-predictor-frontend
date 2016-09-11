@@ -1,3 +1,22 @@
+/* Data Examples
+
+Situation Data: {"situationID":"1234","gameID":"1234","playerID":"1234","choice":{"action":"pass","position":"right","distance":"short"}}
+Score Data: {
+    "gameID":"1234",
+    "situationID": "1234",
+    "playerScores": [
+      {
+          "playerID": "1234",
+          "score": "29"
+      },
+      {
+          "playerID": "5678",
+          "score": "56"
+      }
+    ]
+}
+*/
+
 function read_one_message_from_queue(sqs_conn, queue_url, ui_callback_function){
     var receive_message_params = {
         "QueueUrl": queue_url,

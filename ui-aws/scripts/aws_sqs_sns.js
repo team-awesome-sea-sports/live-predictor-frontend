@@ -91,21 +91,3 @@ function subscribe_queue_to_topic(sns_conn, sqs_conn, topic_arn, app_name, callb
         });
     });
 }
-
-// {"situationID":"1234","gameID":"1234","playerID":"1234","choice":{"action":"pass","position":"right","distance":"short"}}
-
-/*
-{
-    "gameID":"1234",
-    "situationID": "1234",
-    "playerScores": [
-      {
-          "playerID": "1234",
-          "score": "29"
-      },
-      {
-          "playerID": "5678",
-          "score": "56"
-      }
-    ]
-} */
