@@ -24,6 +24,7 @@ function test_sending_selection_data(sqs_conn){
             "distance":"short"}
         };
     submit_selections(sqs_conn, selections);
+    alert('Test selections submitted!');
 }
 
 function submit_selections(sqs_conn, selections){
