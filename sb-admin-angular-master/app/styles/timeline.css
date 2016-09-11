@@ -21,6 +21,8 @@ height: 100em;
 }
 
 .field-img {
+  width: 100%;
+  /*position: absolute;*/
   /*background-image: url(../football.png);
   background-repeat: no-repeat;
   background-size: contain;*/
@@ -29,9 +31,19 @@ height: 100em;
     -o-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     transform: rotate(90deg);
-    z-index: -9999;
+    /*z-index: -9999;*/
 }
 
+.btn {
+  position: relative;
+  top: 15px;
+  z-index: 1;
+  /*margin: 0 10;*/
+}
+
+.btn-div {
+  text-align: center;
+}
 /*.field-img > img {
       z-index: -999;
 }*/
