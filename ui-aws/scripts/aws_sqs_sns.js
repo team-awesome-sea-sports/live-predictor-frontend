@@ -84,7 +84,7 @@ function subscribe_queue_to_topic(sns_conn, sqs_conn, topic_arn, app_name, callb
                             window.alert(err);
                         }
                         alert("Game room now connected to " + app_name + " updates...");
-                        callback_function(sqs_conn, sqs_arn, ui_callback_function);
+                        callback_function(sqs_conn, queue_arn, ui_callback_function);
                     });
                 });
             }

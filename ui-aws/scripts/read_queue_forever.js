@@ -27,6 +27,7 @@ function read_one_message_from_queue(sqs_conn, sqs_arn, ui_callback_function){
 }
 
 function read_messages_from_queue(sqs_conn, sqs_arn, ui_callback_function){
-    // repeat forever, polling every 10 seconds
-    window.setInterval(read_one_message_from_queue(sqs_conn, sqs_arn, ui_callback_function), 10000); 
+    // repeat forever, polling every 2 seconds
+    //alert("Checking for new messages on SQS arn: "+ sqs_arn);
+    window.setInterval(read_one_message_from_queue(sqs_conn, sqs_arn, ui_callback_function), 2000); 
 }
