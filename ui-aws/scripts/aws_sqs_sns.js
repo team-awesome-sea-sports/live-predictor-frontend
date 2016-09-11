@@ -74,7 +74,6 @@ function subscribe_queue_to_topic(sns_conn, sqs_conn, topic_arn, app_name, callb
                     }
                     var sqs_policy_json = JSON.stringify(sqs_policy);
 
-                    alert("Setting queue attributes for policy..."); 
                     sqs_conn.setQueueAttributes({
                         QueueUrl: queue_url, 
                         Attributes: {
