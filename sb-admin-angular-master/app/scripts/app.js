@@ -15,7 +15,7 @@ angular
     'angular-loading-bar',
   ])
   .config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function ($stateProvider,$urlRouterProvider,$ocLazyLoadProvider) {
-    
+
     $ocLazyLoadProvider.config({
       debug:false,
       events:true,
@@ -87,7 +87,7 @@ angular
               'scripts/directives/timeline/timeline.js',
               'scripts/directives/notifications/notifications.js',
               'scripts/directives/chat/chat.js',
-              'scripts/directives/dashboard/stats/stats.js'
+              'scripts/directives/dashboard/games/games.js'
               ]
             })
           }
@@ -154,5 +154,3 @@ angular
        url:'/grid'
    })
   }]);
-
-    
