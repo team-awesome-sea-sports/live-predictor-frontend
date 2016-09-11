@@ -18,7 +18,7 @@ angular.module('sbAdminApp')
     // const schedRoute = 'https://api.sportradar.us/nfl-t1/2016/reg/1/schedule.json?api_key=f88crygtpcxcnc5gu93sqw3m';
     vm.schedules = ['bleh'];
     vm.liveScores = ['whut'];
-    
+    // vm.sitData = ['sitData'];
     vm.newScores = ['new']
       $http({
         method: 'GET',
@@ -50,7 +50,7 @@ angular.module('sbAdminApp')
   //     console.error(error);
   //   }
   // );
-
+  //
   // function new_situation(situation_data){
   //
   //   console.log('situation' ,situation_data);

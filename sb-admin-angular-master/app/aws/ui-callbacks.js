@@ -8,6 +8,6 @@ function new_situation(situation_data){
 
 function new_scores(score_data){
     //TODO
-    alert("New Scores Data Received! " + score_data);
-    $("#scores_msg").innerHTML = score_data;
+    alert("New Scores Data Received! " + JSON.stringify(score_data));
+      console.log(JSON.stringify(score_data));
 }
