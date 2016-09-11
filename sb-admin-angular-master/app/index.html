@@ -21,8 +21,6 @@
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" type="text/css">
     <!-- endbuild -->
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -33,24 +31,49 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
     <script src="bower_components/Chart.js/Chart.min.js"></script>
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="js/sb-admin-2.js"></script>
+    <!-- endbuild -->
+
+    <script type="text/javascript" src="../aws/aws-sdk-2.6.1.js"></script>
+    <script type="text/javascript" src="../aws/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="../aws/aws_sqs_sns.js"></script>
+    <script type="text/javascript" src="../aws/read_queue_forever.js"></script>
+    <script type="text/javascript" src="../aws/ui-callbacks.js"></script>
+    <script type="text/javascript" src="../aws/aws_credentials.js"></script>
+    <script type="text/javascript">
+    // configure AWS
+    AWS.config.update(get_aws_credentials());
+    AWS.config.region = 'us-west-2';
+
+    var sns_conn = new AWS.SNS();
+    var sqs_conn = new AWS.SQS();
+
+    // Topic arns
+    var sns_arn_situation = "arn:aws:sns:us-west-2:785203616251:gamestream-dev-situation";
+    var sns_arn_scoreupdates = "arn:aws:sns:us-west-2:785203616251:gamestream-dev-scoreupdates";
+    console.log(sns_arn_situation);
+
+    var sqs_arn_situation = subscribe_queue_to_topic(sns_conn, sqs_conn, sns_arn_situation, "situation", read_messages_from_queue, new_situation);
+    var sqs_arn_scoreupdates = subscribe_queue_to_topic(sns_conn, sqs_conn, sns_arn_scoreupdates, "scoreupdates", read_messages_from_queue, new_scores);
+
+    </script>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="js/sb-admin-2.js"></script>
-    <!-- endbuild -->
 
-
-
-    <script>
+    <!-- <script>
        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
-    </script>
+    </script> -->
     <!-- Custom CSS -->
 
     <!-- Custom Fonts -->
@@ -66,6 +89,10 @@
     <div ng-app="sbAdminApp">
 
         <div ui-view></div>
+
+
+    </div>
+    <div id="situation_msg">
 
     </div>
 
