@@ -33,12 +33,59 @@ height: 100em;
     transform: rotate(90deg);
     /*z-index: -9999;*/
 }
+.box-container {
+  display: flex;
+/* flex-direction: column; */
+flex-wrap: wrap;
+height: 100%;
+}
 
+<<<<<<< HEAD
 .btn {
   position: relative;
   top: 15px;
   z-index: 1;
   /*margin: 0 10;*/
+}
+
+.box-watch {
+  padding: 1em;
+height: 10em;
+width: 15em;
+background-color: aqua;
+margin-left: 1em;
+margin-bottom: 1em;
+text-align: center;
+}
+.status-class {
+  color: black;
+}
+/*.field-img > img {
+      z-index: -999;
+}*/
+
+/*.btn-group {
+  z-index: 99;
+}*/
+/*.timeline > li {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.timeline > li:before,
+.timeline > li:after {
+    content: " ";
+    display: table;
+}*/
+
+.timeline > li:after {
+    clear: both;
+}
+
+.timeline > li:before,
+.timeline > li:after {
+    content: " ";
+    display: table;
 }
 
 .btn-div {

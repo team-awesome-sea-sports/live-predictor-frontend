@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="scripts/aws-sdk-2.6.1.js"></script>
+    <script type="text/javascript" src="scripts/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="scripts/aws_sqs_sns.js"></script>
+    <script type="text/javascript" src="scripts/read_queue_forever.js"></script>
+    <script type="text/javascript" src="scripts/ui-callbacks.js"></script>
+    <script type="text/javascript" src="scripts/aws_credentials.js"></script>
+    <script type="text/javascript">
+        // configure AWS
+        AWS.config.update(get_aws_credentials());
+        AWS.config.region = 'us-west-2';
+
+        var sns_conn = new AWS.SNS();
+        var sqs_conn = new AWS.SQS();
+
+        // Topic arns
+        var sns_arn_situation = "arn:aws:sns:us-west-2:785203616251:gamestream-dev-situation";
+        var sns_arn_scoreupdates = "arn:aws:sns:us-west-2:785203616251:gamestream-dev-scoreupdates";
+
+        var sqs_arn_situation = subscribe_queue_to_topic(sns_conn, sqs_conn, sns_arn_situation, "situation", read_messages_from_queue, new_situation);
+        var sqs_arn_scoreupdates = subscribe_queue_to_topic(sns_conn, sqs_conn, sns_arn_scoreupdates, "scoreupdates", read_messages_from_queue, new_scores);
+    </script>
+</head>
+<body>
+    <div id="situation_msg"></div>
+    <div id="scores_msg"></div>
+</body>
+</html>
+
